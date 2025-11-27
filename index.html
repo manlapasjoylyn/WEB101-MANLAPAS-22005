@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skills Web Profile</title>
+
+    <style>
+
+        
+
+    .members-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    margin-top: 20px;
+    justify-content: center; /* CENTER GRID */
+}
+    :root {
+    --violet: #A01FE7;
+    --lavender: #A8A4E6;
+    --lightblue: #C0DCF7;
+
+    --text-dark: #1e1e1e;
+    --text-light: #ffffff;
+}
+
+/* GENERAL */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: var(--lightblue);
+}
+
+/* CONTAINER */
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 200px;
+    background-color: var(--violet);
+    color: var(--text-light);
+    padding: 20px;
+}
+
+.sidebar h2 {
+    margin-top: 0;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    padding: 10px 0;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.sidebar li:hover {
+    color: var(--lavender);
+}
+
+/* TOP BAR */
+.topbar {
+    height: 60px;
+    background-color: var(--lavender);
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.topbar a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-size: 18px;
+    cursor: pointer;
+    margin: 0 20px;
+    transition: 0.2s;
+}
+
+.topbar a:hover {
+    color: var(--violet);
+}
+
+/* CONTENT AREA */
+.content {
+    flex: 1;
+    padding: 20px;
+    background-color: var(--lightblue);
+}
+
+/* MEMBER GRID */
+.members-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    margin-top: 20px;
+}
+
+.member-box {
+    text-align: center;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: var(--lavender);
+    color: var(--text-dark);
+    transition: 0.25s;
+}
+
+.member-box:hover {
+    background-color: var(--violet);
+    color: var(--text-light);
+    transform: translateY(-5px);
+}
+
+.member-box img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid var(--violet);
+}
+
+/* PROFILE PAGE */
+.profile-container {
+    display: flex;
+    gap: 40px;
+    padding: 20px 40px;
+    align-items: flex-start;
+    background-color: var(--lavender);
+    border-radius: 15px;
+}
+
+.profile-left {
+    width: 300px;
+    min-width: 280px;
+    background-color: var(--violet);
+    padding: 20px;
+    color: var(--text-light);
+    border-radius: 15px;
+}
+
+.profile-right {
+    flex: 1;
+    background-color: var(--lightblue);
+    padding: 20px;
+    border-radius: 15px;
+    color: var(--text-dark);
+}
+
+.profile-img {
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+    border: 4px solid var(--lavender);
+}
+
+/* TEXT HEADERS */
+h1, h2, h3, h4 {
+    color: var(--text-dark);
+}
+
+.profile-left h2,
+.profile-left h3,
+.profile-left h4 {
+    color: var(--text-light);
+}
+
+/* CENTER CONTENT */
+.center-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Dashboard</h2>
+        <ul>
+           <!-- <li onclick="showHome()">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li> -->
+        </ul>
+    </div>
+
+    <!-- Main Section -->
+    <div style="width: 100%;">
+
+        <!-- Top bar -->
+        <div class="topbar">
+    <a onclick="showHome()" style="margin: 0 40px;">Home</a>
+    <a onclick="showAbout()">About Us</a>
+</div>
+
+        <!-- Content -->
+        <div class="content" id="content">
+            <h1>Contents</h1>
+            <p>Welcome to our skills web profile.</p>
+        </div>
+
+    </div>
+</div>
+
+<script>
+
+const members = {
+    member1: {
+    name: "Macarang, Jasper I.",
+    image: "pictures/member1.jpg",
+    title: "IT Student",
+    about: "A passionate gamer and an aspiring web developer specializing in front-end development.",
+    contact: {
+        phone: "0945 663 7742",
+        address: "BLK 31 LOT 15 Bougainvilla street Maligaya park",
+        website: "https://www.facebook.com/Jasysage/",
+        email: "jaspermacarang9@gmail.com",
+    },
+    skills: ["Public Speaking", "Basic Prompting", "Html"],
+
+    education: [
+        { school: "Bestlink College of the Philippines", desc: "Bachelor of Science in Information Technology." }
+    ],
+
+    experience: "N/A",       // ← MUST BE ARRAY
+
+    achievement: [
+        "Graduated Senior High with Honors"   // ← MUST BE ARRAY
+    ]
+},
+
+
+    member2: {
+        name: "Gaurano, Eddie jr.",
+        image: "pictures/member2.jpg",
+        title: "IT Student",
+        about: "I am a motivated and hardworking student who is eager to learn and develop new skills. I am responsible, adaptable, and committed to improving myself as I work toward my goals in the field of Information Technology..",
+        contact: {
+            phone: "0954 417 8073",
+            address: "164 San Miguel St., Barangay Payatas A, Quezon City",
+            website: "https://www.facebook.com/gauranoeddie",
+            email: "eddiedeymnice@gmail.com",
+        },
+        skills: ["Communication Skills", "Fast Learner", "Basic Computer Skills"],
+        education: [
+            { school: "Bestlink College of the Philippines", desc: "Bachelor of Science in Information Technology." }
+        ],
+        experience: "N/A",
+        achievement: [
+            "Grade 11: With Honor 1st Sem",
+            "Grade 11: With Honor 2nd Sem"
+        ]
+    },
+
+    member3: {
+        name: "Astillo, Flordeliza L.",
+        image: "pictures/member3.jpg",
+        title: "Star Model / IT Student",
+        about: "A compassionate and empathetic individual who cares deeply about the well-being of others. I'm a good listener who offers support and understanding to those in need. I strive to make a positive impact on the world around me. Also I'm competitive when needed .",
+        contact: {
+            phone: "0993 826 3779",
+            address: "155 J.P RIZAL STREET BRGY. BAGONG SILANGAN, QUEZON CITY.",
+            website: "https://www.facebook.com/flordeliza.astillo",
+            email: "flordelizaastillo5@gmail.com",
+        },
+        skills: ["Communication skills", "Time management", "Collaborative"],
+        education: [
+            { school: "Bestlink College of the Philippines", desc: "Description for education." }
+        ],
+        experience: "N/A",
+        achievement: ["N/A"],
+
+    },
+
+    member4: {
+    name: "Tumbocon, Alejandro G. II",
+    image: "pictures/member4.jpg",   // Make sure you add this image file
+    title: "Jeremiah 29:11",
+    about: "I love sleeping and playing.",
+    contact: {
+        phone: "0994 125 0068",
+        address: "Jasmin St. Barangay Holy Sprit Quezon City",
+        website: "https://www.facebook.com/alejandro.tumboconii",
+        email: "alejandrotumbocon9@gmail.com",
+    },
+    skills: ["Continous Learnin", "Time Management", "Collaborative"],
+    education: [
+        { school: "Bestlink College of The Philippines", desc: "Bachelor of Science in Information Technology" }
+    ],
+    experience: [
+        { workplace: "N/A", role: "N/A", desc: "N/A" }
+    ],
+    achievement: [
+        "Best in System Innovation",
+        "With Honors"
+    ]
+},
+
+    member5: {
+    name: "Tantis, Asnalia M.",
+    image: "pictures/member5.jpg",   // make sure you add the photo
+    title: "IT Student",
+    about: "I’m an introverted person with a deep interest in growing my skills in programming and technology. I thrive in calm, focused environments where I can think clearly and solve problems thoughtfully.",
+    contact: {
+        phone: "0928 322 0611",
+        address: "Republic  Brgy Holy Spirit Quezon city",
+        website: "https://www.facebook.com/asnalia.tantis.2024",
+        email: "tantisasnaliamutin@gmail.com",
+    },
+    skills: ["Microsoft Office Application", "Knowledge in Computer programming"],
+    education: [
+        { school: "Bestlink College of the Philippines", desc: "Bachelor of Science in Information Technology" }
+    ],
+    experience: "N/A",
+    achievement: ["N/A"],
+
+},
+
+    member6: {
+    name: "Mabalot, Angel Grace",
+    image: "pictures/member6.jpg",   // make sure the file exists
+    title: "Programmer & Model",
+    about: "I am a hardworking student and learn a lot more skills in developing.",
+    contact: {
+        phone: "09952272664",
+        address: "Blk 25 Lot 26 Roseville Phase 1, Lower Sampaguita ext. Payatas A. Quezon City",
+        website: "https://www.facebook.com/angelgrace.mabalot.3",
+        email: "angelgracemabalot97@gmail.com"
+    },
+
+    skills: ["Communication Skills", "Fast learner", "Collaborative"],  // ✔ FIXED (added comma)
+
+    education: [
+        { 
+            school: "Bestlink College of the Philippines", 
+            desc: "Bachelor of Science in Information Technology." 
+        }
+    ],  // ✔ FIXED (added comma)
+
+    experience: [
+        { 
+            workplace: "N/A", 
+            desc: "N/A" 
+        }
+    ], // ✔ FIXED
+
+    achievement: [
+        "Former Eclarian Starmodel",
+        "Ms. ICT 2024"
+    ]
+},
+
+    member7: {
+    name: "Manlapas, Joylyn H.",
+    image: "pictures/member7.jpg",   // place the image in your pictures folder
+    title: "YHWH",
+    about: "I work well in teams and take initiative. Adjust to changes to meet new goals. I communicate clearly and respectfully, whether solving problems or sharin ideas. I focus on understanding others and building trust to create strong, positive relationships. ",
+    contact: {
+        phone: "09629804890",
+        address: "Blk 18 lot 4 Miramonte Park Subd. Barangay 180 Caloocan City",
+        website: "https://www.facebook.com/share/16phUAV7E2/",
+        email: "manlapasjoylyn636@gmail.com",
+    },
+    skills: ["Adaptability", "Attention Detail", "Communication Skills"],
+    education: [
+        { school: "Bestlink College of the Philippines", desc: "Bachelor of Science in Information Technology." }
+    ],
+    experience: [
+        { workplace: "N/A", role: "N/A" }
+    ],
+    achievement: 
+        ["N/A"],
+    
+},
+
+
+
+
+};
+
+
+
+
+function showProfile(id) {
+    const m = members[id];
+    const content = document.getElementById("content");
+
+    content.className = "";
+    content.innerHTML = `
+    <div class="profile-container">
+
+        <!-- LEFT SIDE -->
+        <div class="profile-left">
+            <img src="${m.image}" class="profile-img">
+
+            <h2>${m.name}</h2>
+            <h4>${m.title}</h4>
+
+            <h3>Contact Details</h3>
+            <p>${m.contact.phone}</p>
+            <p>${m.contact.address}</p>
+            <p>${m.contact.website}</p>
+            <p>${m.contact.email}</p>
+        </div>
+
+        <!-- RIGHT SIDE -->
+        <div class="profile-right">
+            <h2>About Me</h2>
+            <p>${m.about}</p>
+
+            <h2>Educations</h2>
+            ${m.education.map(e => `
+                <h4>${e.school}</h4>
+                <p>${e.desc}</p>
+            `).join("")}
+
+            <h2>Work Experience</h2>
+            ${
+            m.experience === "N/A"
+            ? "<p>N/A</p>"
+            : m.experience.map(ex => `
+            <h4>${ex.workplace} – ${ex.role}</h4>
+            <p>${ex.desc}</p>
+            `).join("")
+}
+
+
+            <!-- MOVE THEM HERE -->
+            <h2>Skills</h2>
+            <ul>${m.skills.map(s => `<li>${s}</li>`).join("")}</ul>
+
+            <h2>Achievements</h2>
+            <ul>${m.achievement.map(a => `<li>${a}</li>`).join("")}</ul>
+        </div>
+
+    </div>
+`;
+}
+
+
+function showAbout() {
+    const content = document.getElementById("content");
+
+    content.className = "center-content";
+
+    content.innerHTML = `
+        <h1>Members</h1>
+
+        <div class="members-container">
+
+            <div class="member-box" onclick="showProfile('member1')">
+                <img src="pictures/member1.jpg" class="profile-img" alt="Member 1">
+                <div class="member-name">Macarang, Jasper I.</div>
+            </div>
+
+            <div class="member-box" onclick="showProfile('member2')">
+                <img src="pictures/member2.jpg" alt="Member 2">
+                <div class="member-name">Gaurano, Eddie jr. G.</div>
+            </div>
+
+            <div class="member-box" onclick="showProfile('member3')">
+                <img src="pictures/member3.jpg" alt="Member 3">
+                <div class="member-name">Astillo, Flordeliza L.</div>
+            </div>
+
+            <div class="member-box" onclick="showProfile('member4')">
+                <img src="pictures/member4.jpg" alt="Member 4">
+                <div class="member-name">Tumbocon Alejandro G, II</div>
+            </div>
+
+            <div class="member-box" onclick="showProfile('member5')">
+                <img src="pictures/member5.jpg" alt="Member 5">
+                <div class="member-name">Tantis, Asnalia M.</div>
+            </div>
+
+            <div class="member-box" onclick="showProfile('member6')">
+                <img src="pictures/member6.jpg" alt="Member 6">
+                <div class="member-name">Mabalot, Angel Grace G.</div>
+            </div>
+
+            <div class="member-box" onclick="showProfile('member7')">
+                <img src="pictures/member7.jpg" alt="Member 7">
+                <div class="member-name">Manlapas, Joylyn H.</div>
+            </div>
+
+        </div>
+    `;
+}
+
+function showHome() {
+  const content = document.getElementById("content");
+
+  content.className = "center-content"; // center content
+
+  content.innerHTML = `
+    <h1 style="text-align: center; font-size: 40px; margin-bottom: 20px;">Group Preview</h1>
+    <p style="font-size: 22px; line-height: 1.6; text-align: center; max-width: 900px;">
+      We are a dedicated group of BSIT-2205 students, combining our skills in programming, web development, and problem-solving to create meaningful projects. We value teamwork, creativity, and continuous learning, always supporting each other to achieve our goals while exploring new technologies and practical solutions.
+    </p>
+  `;
+}
+</script>
+
+
+</body>
+</html>
